@@ -29,8 +29,31 @@ public class Lexer {
         return this.input.substring(pos, this.position);
     }
 
+    public int readNumber(){
+        int pos = this.position;
+        while(Character.isDigit(this.ch)){
+            this.readChar();
+        }
+        return Integer.parseInt(this.input.substring(pos,this.position));
+    }
+    
+    
+    
+    
+    public void skipWhitepace(){
+        while (this.ch.equals(' ') || this.ch.equals('\n') || this.ch.equals('\t')|| this.ch.equals('\r') ) {
+            this.readChar();
+        }
+    }
+
+
+
+
     public Token NextToken(){
         Token tok;
+        
+        this.skipWhitepace();
+
         switch (ch) {
             case '=':
                 tok = new Token(Token.ASSIGN,ch);
@@ -63,9 +86,16 @@ public class Lexer {
                 if(Character.isAlphabetic(ch) || ch =='_'){
                     tok = new Token();
                     tok.Literal = this.readIdentifier();
+                    tok.Type = Token.LookupIdent(tok.Literal);
+                    return tok;
+                }
+                else if(Character.isDigit(ch)){
+                    tok = new Token();
+                    tok.Type = Token.INT;
+                    tok.Literal = this.readNumber();
+                    return tok;
                 }
                 else{
-
                     System.err.println("Invalid Token!");
                     tok = new Token();
                     tok = new Token(Token.ILLEGAL,ch);

@@ -23,21 +23,33 @@ public class Token{
                                FUNCTION = "FUNCTION",
                                EOF ="EOF",
                                LET = "LET";
-    HashMap<String,String> keyword = new HashMap<String,String>();
-    keyword.put("fn",FUNCTION);
+    ;
+    public static HashMap<String,String> keywords = new HashMap<String,String>();
 
-    
+    private static void initKeyword(){
+        keywords.put("fn",Token.FUNCTION);
+        keywords.put("let",Token.LET);
+    }
     public Token(){
         this.Type  = "";
-        this.Literal = ""; 
+        this.Literal = "";
+        initKeyword(); 
     }
     public Token(String Type,String Literal){
         this.Type=Type;
-        this.Literal=Literal; 
+        this.Literal=Literal;
+        initKeyword(); 
     }
     public Token(String Type,Character Literal){
         this.Type=Type;
-        this.Literal= Character.toString(Literal); 
+        this.Literal= Character.toString(Literal);
+        initKeyword(); 
+    }
+    public static String LookupIdent(String Ident){
+        if(keywords.containsKey(Ident)){
+            return keywords.get(Ident);
+        }
+        return Token.IDENT;
     }
 
 }
