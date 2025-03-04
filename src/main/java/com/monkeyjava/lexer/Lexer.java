@@ -29,12 +29,12 @@ public class Lexer {
         return this.input.substring(pos, this.position);
     }
 
-    public int readNumber(){
+    public String readNumber(){
         int pos = this.position;
         while(Character.isDigit(this.ch)){
             this.readChar();
         }
-        return Integer.parseInt(this.input.substring(pos,this.position));
+        return this.input.substring(pos,this.position);
     }
     
     
@@ -58,6 +58,27 @@ public class Lexer {
             case '=':
                 tok = new Token(Token.ASSIGN,ch);
                 break;
+            case '+':
+                tok = new Token(Token.PLUS,ch);
+                break;
+            case '-':
+                tok = new Token(Token.MINUS,ch);
+                break;
+            case '!':
+                tok = new Token(Token.BANG,ch);
+                break;
+            case '/':
+                tok = new Token(Token.SLASH,ch);
+                break;
+            case '*':
+                tok = new Token(Token.ASTERISK,ch);
+                break;
+            case '<':
+                tok = new Token(Token.LT,ch);
+                break;
+            case '>':
+                tok = new Token(Token.GT,ch);
+                break;
             case ';':
                 tok = new Token(Token.SEMICOLON,ch);
                 break;
@@ -69,9 +90,6 @@ public class Lexer {
                 break;
             case ',':
                 tok = new Token(Token.COMMA,ch);
-                break;
-            case '+':
-                tok = new Token(Token.PLUS,ch);
                 break;
             case '{':
                 tok = new Token(Token.LBRACE,ch);

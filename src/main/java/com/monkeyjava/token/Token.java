@@ -12,6 +12,13 @@ public class Token{
                                // Operators
                                ASSIGN = "=",
                                PLUS = "+",
+                               MINUS = "-",
+                               BANG = "!",
+                               ASTERISK = "*",
+                               SLASH = "/",
+                               
+                               LT = "<",
+                               GT = ">",
                                // Delimiters
                                COMMA = ",",
                                SEMICOLON = ";",
@@ -22,13 +29,23 @@ public class Token{
                                // Keywords
                                FUNCTION = "FUNCTION",
                                EOF ="EOF",
-                               LET = "LET";
+                               LET = "LET",
+                               RETURN = "RETURN",
+                               IF = "IF",
+                               ELSE = "ELSE",
+                               TRUE = "TRUE",
+                               FALSE = "FALSE";
     ;
     public static HashMap<String,String> keywords = new HashMap<String,String>();
 
     private static void initKeyword(){
         keywords.put("fn",Token.FUNCTION);
         keywords.put("let",Token.LET);
+        keywords.put("true",Token.TRUE);
+        keywords.put("false",Token.FALSE);
+        keywords.put("return",Token.RETURN);
+        keywords.put("if",Token.IF);
+        keywords.put("else",Token.ELSE);
     }
     public Token(){
         this.Type  = "";
