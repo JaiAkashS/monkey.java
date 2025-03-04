@@ -16,10 +16,10 @@ public class LexerTest {
     public void TestNextToken(){
         String input = "let five = 5;\n" +
                        "let ten = 10;\n" +
-                       "let add = fn(x, y) {\n" +
+                       "let add != fn(x, y) {\n" +
                        "    x + y;\n" +
                        "};\n" +
-                       "let result = add(five, ten);\n" +
+                       "let result == add(five, ten);\n" +
                        "!-/*5; \n"+
                        "5 < 10 > 5; \n" +
                        "if (5 < 10) { \n" +
@@ -41,7 +41,7 @@ public class LexerTest {
         tokens.add(new ExpectToken(Token.SEMICOLON, ";"));
         tokens.add(new ExpectToken(Token.LET, "let"));
         tokens.add(new ExpectToken(Token.IDENT, "add"));
-        tokens.add(new ExpectToken(Token.ASSIGN, "="));
+        tokens.add(new ExpectToken(Token.NOT_EQ, "!="));
         tokens.add(new ExpectToken(Token.FUNCTION, "fn"));
         tokens.add(new ExpectToken(Token.LPAREN, "("));
         tokens.add(new ExpectToken(Token.IDENT, "x"));
@@ -57,7 +57,7 @@ public class LexerTest {
         tokens.add(new ExpectToken(Token.SEMICOLON, ";"));
         tokens.add(new ExpectToken(Token.LET, "let"));
         tokens.add(new ExpectToken(Token.IDENT, "result"));
-        tokens.add(new ExpectToken(Token.ASSIGN, "="));
+        tokens.add(new ExpectToken(Token.EQ, "=="));
         tokens.add(new ExpectToken(Token.IDENT, "add"));
         tokens.add(new ExpectToken(Token.LPAREN, "("));
         tokens.add(new ExpectToken(Token.IDENT, "five"));

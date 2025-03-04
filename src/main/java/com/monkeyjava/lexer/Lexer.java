@@ -45,6 +45,12 @@ public class Lexer {
             this.readChar();
         }
     }
+    public String peek(){
+        if(readPosition<input.length()){
+            return input.substring(readPosition,readPosition+1);
+        }
+        return "0";
+    }
 
 
 
@@ -56,7 +62,12 @@ public class Lexer {
 
         switch (ch) {
             case '=':
-                tok = new Token(Token.ASSIGN,ch);
+                if((this.peek()).equals("=")){
+                    tok = new Token(Token.EQ,input.substring(position,readPosition+1));
+                    this.readChar();
+                }else{
+                    tok = new Token(Token.ASSIGN,ch);
+                }
                 break;
             case '+':
                 tok = new Token(Token.PLUS,ch);
@@ -65,7 +76,12 @@ public class Lexer {
                 tok = new Token(Token.MINUS,ch);
                 break;
             case '!':
-                tok = new Token(Token.BANG,ch);
+                if((this.peek()).equals("=")){
+                    tok = new Token(Token.NOT_EQ,input.substring(position,readPosition+1));
+                    this.readChar();
+                }else{
+                    tok = new Token(Token.BANG,ch);
+                }
                 break;
             case '/':
                 tok = new Token(Token.SLASH,ch);
