@@ -1,38 +1,44 @@
 package src.main.java.com.monkeyjava.ast;
 
 
+import java.util.ArrayList;
+
 import src.main.java.com.monkeyjava.token.*;
 
 
 
 public class Ast {
         
-    interface Node{
+    public interface Node{
         abstract String TokenLiteral();
     }
 
-    interface Statement extends Node {
+    public interface Statement extends Node {
         abstract void statementNode();
     }
 
-    interface Expression extends Node {
+    public interface Expression extends Node {
         abstract void expressionNode();
     }
 
     public class Program {
-        Statement[] Statements;
+        public ArrayList<Statement> Statements = new ArrayList<>();
         public String TokenLiteral(){
-            if(this.Statements.length>0){
-                return this.Statements[0].TokenLiteral();
+            if(this.Statements.size()>0){
+                return this.Statements.get(0).TokenLiteral();
             }else{
                 return "";
             }
         }
     }
 
-    class Identifier{
-        Token Token;
-        String Value;
+    public class Identifier{
+        public Token Token;
+        public String Value;
+        public Identifier(Token Token,String Value){
+            this.Token = Token;
+            this.Value = Value;
+        }
         public void statementNode(){    
         }
         public String TokenLiteral(){
@@ -40,18 +46,20 @@ public class Ast {
         }
     }
 
-    class LetStatement{
-        Token Token;
-        Identifier Name;
-        Expression Value;
+    public class LetStatement{
+        public Token Token;
+        public Identifier Name;
+        public Expression Value;
 
-
+        public LetStatement(Token tok){
+            Token = tok;
+        }
         public void statementNode(){    
         }
         public String TokenLiteral(){
             return this.Token.Literal;
         }
-}
+    }
 
 
 
