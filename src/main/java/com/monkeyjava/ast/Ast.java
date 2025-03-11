@@ -10,6 +10,7 @@ public class Ast {
         
     public interface Node{
         abstract String TokenLiteral();
+        abstract String string();
     }
 
     public interface Statement extends Node {
@@ -29,6 +30,14 @@ public class Ast {
                 return "";
             }
         }
+
+        public String string(){
+            StringBuilder out = new StringBuilder();
+            for (Statement stmt : this.Statements) {
+                out.append(stmt.toString());
+            }
+            return out.toString();
+        }
     }
 
     public class Identifier{
@@ -44,6 +53,9 @@ public class Ast {
         }
         public String TokenLiteral(){
             return this.Token.Literal;
+        }
+        public String string(){
+            return this.Value;
         }
     }
 
@@ -62,21 +74,62 @@ public class Ast {
         public String TokenLiteral(){
             return this.Token.Literal;
         }
+        public String string(){
+            StringBuilder out = new StringBuilder();
+            out.append(this.TokenLiteral() + " ");
+            out.append(this.Name.string() + " ");
+            out.append(" = ");
+            if(this.Value != null){
+                out.append(this.Value.string());
+            }
+            out.append(";");
+            return out.toString();
+        }
+    
     }
 
     public class ReturnStatement implements Statement{
         Token Token;
         Expression ReturnValue;
 
-        
+
 
         public void statementNode(){}
         public String TokenLiteral(){
             return Token.Literal;
         }
+        public String string(){
+            StringBuilder out = new StringBuilder();
+            out.append(this.TokenLiteral() + " ");
+            out.append(" = ");
+            if(this.ReturnValue != null){
+                out.append(this.ReturnValue.string());
+            }
+            out.append(";");
+            return out.toString();
+        }
     }
 
-
+    public class ExpressionStatement implements Statement{
+        Token Token;
+        Expression Expression;
+        
+        
+        
+        public void statementNode(){}
+        public String TokenLiteral(){
+            return Token.Literal;
+        }
+        public String string(){
+            StringBuilder out = new StringBuilder();
+            if(this.Expression != null){
+                out.append(this.Expression.string());
+                return out.toString();
+            }
+            return "";
+        }
+        
+    }
 }
 
 
