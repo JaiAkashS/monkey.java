@@ -51,7 +51,8 @@ public class Ast {
         public Token Token;
         public Identifier Name;
         public Expression Value;
-
+        public LetStatement(){
+        }
         public LetStatement(Token tok){
             Token = tok;
             Name = new Identifier();
