@@ -9,17 +9,18 @@ public class Lexer {
     Character ch;
     public Lexer(String input){
         this.input = input;
+        this.position = this.readPosition = 0;
         this.readChar();
     }
     public void readChar(){
-        if(readPosition>=input.length()){
-            ch = 0;
+        if(this.readPosition>=this.input.length()){
+            this.ch = 0;
         }
         else{
-            ch = input.charAt(readPosition);
+            this.ch = this.input.charAt(readPosition);
         }
-        position = readPosition;
-        readPosition +=1; 
+        this.position = this.readPosition;
+        this.readPosition +=1; 
     }
     public String readIdentifier(){
         int pos = this.position;

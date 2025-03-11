@@ -34,6 +34,8 @@ public class Ast {
     public class Identifier{
         public Token Token;
         public String Value;
+        public Identifier(){
+        }
         public Identifier(Token Token,String Value){
             this.Token = Token;
             this.Value = Value;
@@ -45,13 +47,14 @@ public class Ast {
         }
     }
 
-    public class LetStatement{
+    public class LetStatement implements Statement{
         public Token Token;
         public Identifier Name;
         public Expression Value;
 
         public LetStatement(Token tok){
             Token = tok;
+            Name = new Identifier();
         }
         public void statementNode(){    
         }
