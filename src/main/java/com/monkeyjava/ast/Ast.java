@@ -64,6 +64,17 @@ public class Ast {
         }
     }
 
+    public class ReturnStatement implements Statement{
+        Token Token;
+        Expression ReturnValue;
+
+        
+
+        public void statementNode(){}
+        public String TokenLiteral(){
+            return Token.Literal;
+        }
+    }
 
 
 }
