@@ -41,7 +41,7 @@ public class Parser{
     public Ast.Statement parseStatement(){
         switch (this.curToken.Type) {
             case (Token.LET):
-                return this.parseLetStatement();
+                return this.parseLetStatement();        
             case (Token.RETURN):
                 return this.parseReturnStatement();
             default:
