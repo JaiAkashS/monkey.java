@@ -23,6 +23,13 @@ public class Ast {
 
     public class Program {
         public ArrayList<Statement> Statements = new ArrayList<>();
+        public Program(){
+        }
+        public Program(ArrayList<Ast.Statement>Statements){
+            this.Statements = Statements;
+        }
+        
+        
         public String TokenLiteral(){
             if(this.Statements.size()>0){
                 return this.Statements.get(0).TokenLiteral();
@@ -34,13 +41,13 @@ public class Ast {
         public String string(){
             StringBuilder out = new StringBuilder();
             for (Statement stmt : this.Statements) {
-                out.append(stmt.toString());
+                out.append(stmt.string());
             }
             return out.toString();
         }
     }
 
-    public class Identifier{
+    public class Identifier implements Expression{
         public Token Token;
         public String Value;
         public Identifier(){
@@ -49,7 +56,7 @@ public class Ast {
             this.Token = Token;
             this.Value = Value;
         }
-        public void statementNode(){    
+        public void expressionNode(){    
         }
         public String TokenLiteral(){
             return this.Token.Literal;
@@ -69,6 +76,11 @@ public class Ast {
             Token = tok;
             Name = new Identifier();
         }
+        public LetStatement(Token tok,Identifier Name,Expression Value){
+            this.Token = tok;
+            this.Name = Name;
+            this.Value = Value;
+        }
         public void statementNode(){    
         }
         public String TokenLiteral(){
@@ -77,7 +89,7 @@ public class Ast {
         public String string(){
             StringBuilder out = new StringBuilder();
             out.append(this.TokenLiteral() + " ");
-            out.append(this.Name.string() + " ");
+            out.append(this.Name.string() + "");
             out.append(" = ");
             if(this.Value != null){
                 out.append(this.Value.string());
@@ -91,7 +103,6 @@ public class Ast {
     public class ReturnStatement implements Statement{
         Token Token;
         Expression ReturnValue;
-
 
 
         public void statementNode(){}

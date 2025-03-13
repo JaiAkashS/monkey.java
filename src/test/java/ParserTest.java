@@ -13,7 +13,7 @@ import src.main.java.com.monkeyjava.token.Token;
 public class ParserTest {
     @Test
     public void TestLetStatements(){
-        String input = "let x  5;\n" + 
+        String input = "let x = 5;\n" + 
                         "let y = 10;\n" + 
                         "let foobar = 838383;";
         Lexer l = new Lexer(input);
@@ -58,7 +58,7 @@ public class ParserTest {
     public void checkParserErrors(Parser p) {
         ArrayList<String> errors = p.Errors();
         if(errors.size() == 0){
-            System.err.println("Empty errors");
+            // System.err.println("Empty errors");
             return;
         }        
         System.err.println(String.format("Parser has %d errors",errors.size()));
