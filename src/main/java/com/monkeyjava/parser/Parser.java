@@ -1,11 +1,28 @@
 package src.main.java.com.monkeyjava.parser;
 
 import src.main.java.com.monkeyjava.token.*;
+import src.main.java.com.monkeyjava.token.Token.TokenType;
 import src.main.java.com.monkeyjava.lexer.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+
 
 import src.main.java.com.monkeyjava.ast.Ast;
+
+
+
+@FunctionalInterface
+interface prefixParseFn {
+    public Ast.Expression parse();
+}
+
+
+@FunctionalInterface
+interface infixParseFn {
+    public Ast.Expression parse(Ast.Expression Left);
+}
 
 
 public class Parser{
@@ -14,6 +31,8 @@ public class Parser{
     Token peekToken;
     ArrayList<String> errors;
 
+    HashMap<Token,prefixParseFn> prefixParseFns;
+    HashMap<Token,infixParseFn> infixParseFns;
 
 
     public Parser (Lexer l){
@@ -29,7 +48,7 @@ public class Parser{
     public Ast.Program ParseProgram(){
         Ast.Program program = new Ast().new Program();
         Ast.Statement stmt;
-        while (!this.curTokenIs(Token.EOF)) {
+        while (!this.curTokenIs(TokenType.EOF)) {
             stmt = this.parseStatement();
             if(stmt != null){
                 program.Statements.add(stmt);
@@ -40,9 +59,9 @@ public class Parser{
     }
     public Ast.Statement parseStatement(){
         switch (this.curToken.Type) {
-            case (Token.LET):
+            case LET:
                 return this.parseLetStatement();        
-            case (Token.RETURN):
+            case RETURN:
                 return this.parseReturnStatement();
             default:
                 return null;
@@ -51,15 +70,15 @@ public class Parser{
     }
     public Ast.LetStatement parseLetStatement(){
         Ast.LetStatement stmt = new Ast().new LetStatement(this.curToken);
-        if(!this.expectPeek(Token.IDENT)){
+        if(!this.expectPeek(TokenType.IDENT)){
             return null;
         }
         stmt.Name = new Ast().new Identifier(this.curToken,this.curToken.Literal);
-        if(!this.expectPeek(Token.ASSIGN)){
+        if(!this.expectPeek(TokenType.ASSIGN)){
             return null;
         }
         // TODO:We're skipping the expressions until we encouter a semicolon 
-        while (!this.curTokenIs(Token.SEMICOLON)) {
+        while (!this.curTokenIs(TokenType.SEMICOLON)) {
             this.nextToken();
         }
         return stmt;
@@ -71,7 +90,7 @@ public class Parser{
         this.nextToken();
         //TODO: we're skipping the expressions until we encounter a semicolon
 
-        while (!this.curTokenIs(Token.SEMICOLON)) {
+        while (!this.curTokenIs(TokenType.SEMICOLON)) {
             this.nextToken();
         }
         return rstmt;
@@ -80,15 +99,15 @@ public class Parser{
 
 
 
-    public boolean curTokenIs(String TokenType){
+    public boolean curTokenIs(TokenType TokenType){
         return this.curToken.Type == TokenType; 
     }
 
-    public boolean peekTokenIs(String TokenType){
+    public boolean peekTokenIs(TokenType TokenType){
         return this.peekToken.Type == TokenType;
     }
 
-    public boolean expectPeek(String TokenType){
+    public boolean expectPeek(TokenType TokenType){
         if(this.peekTokenIs(TokenType)){
             this.nextToken();
             return true;
@@ -102,7 +121,7 @@ public class Parser{
         return this.errors;
     }
 
-    public void peekError(String t){
+    public void peekError(TokenType t){
         String msg = String.format("Expected next token to be %s, got %s instead",t,this.peekToken.Type);
         this.errors.add(msg);
     }

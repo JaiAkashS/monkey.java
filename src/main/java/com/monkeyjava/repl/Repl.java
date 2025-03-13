@@ -3,6 +3,7 @@ package src.main.java.com.monkeyjava.repl;
 import java.util.Scanner;
 
 import src.main.java.com.monkeyjava.token.Token;
+import src.main.java.com.monkeyjava.token.Token.TokenType;
 import src.main.java.com.monkeyjava.lexer.Lexer;
 
 public class Repl {
@@ -17,7 +18,7 @@ public class Repl {
                 return;
             }
             Lexer l = new Lexer(scanned);
-            for(Token tok = l.NextToken();tok.Type!=Token.EOF;tok = l.NextToken()){
+            for(Token tok = l.NextToken();tok.Type!=TokenType.EOF;tok = l.NextToken()){
                 System.out.println(String.format("%s : %s",tok.Literal,tok.Type));
             }
             break;

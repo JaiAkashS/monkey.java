@@ -1,10 +1,12 @@
 package src.test.java;
 
+import src.main.java.com.monkeyjava.token.Token.TokenType;
+
 public class ExpectToken {
-    String Type;
+    TokenType Type;
     String Literal;
 
-    protected ExpectToken(String type, String literal) {
+    protected ExpectToken(TokenType type, String literal) {
         this.Type = type;
         this.Literal = literal;
     }

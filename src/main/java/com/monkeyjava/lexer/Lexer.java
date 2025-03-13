@@ -64,58 +64,58 @@ public class Lexer {
         switch (ch) {
             case '=':
                 if((this.peek()).equals("=")){
-                    tok = new Token(Token.EQ,input.substring(position,readPosition+1));
+                    tok = new Token(Token.TokenType.EQ,input.substring(position,readPosition+1));
                     this.readChar();
                 }else{
-                    tok = new Token(Token.ASSIGN,ch);
+                    tok = new Token(Token.TokenType.ASSIGN,ch);
                 }
                 break;
             case '+':
-                tok = new Token(Token.PLUS,ch);
+                tok = new Token(Token.TokenType.PLUS,ch);
                 break;
             case '-':
-                tok = new Token(Token.MINUS,ch);
+                tok = new Token(Token.TokenType.MINUS,ch);
                 break;
             case '!':
                 if((this.peek()).equals("=")){
-                    tok = new Token(Token.NOT_EQ,input.substring(position,readPosition+1));
+                    tok = new Token(Token.TokenType.NOT_EQ,input.substring(position,readPosition+1));
                     this.readChar();
                 }else{
-                    tok = new Token(Token.BANG,ch);
+                    tok = new Token(Token.TokenType.BANG,ch);
                 }
                 break;
             case '/':
-                tok = new Token(Token.SLASH,ch);
+                tok = new Token(Token.TokenType.SLASH,ch);
                 break;
             case '*':
-                tok = new Token(Token.ASTERISK,ch);
+                tok = new Token(Token.TokenType.ASTERISK,ch);
                 break;
             case '<':
-                tok = new Token(Token.LT,ch);
+                tok = new Token(Token.TokenType.LT,ch);
                 break;
             case '>':
-                tok = new Token(Token.GT,ch);
+                tok = new Token(Token.TokenType.GT,ch);
                 break;
             case ';':
-                tok = new Token(Token.SEMICOLON,ch);
+                tok = new Token(Token.TokenType.SEMICOLON,ch);
                 break;
             case '(':
-                tok = new Token(Token.LPAREN,ch);
+                tok = new Token(Token.TokenType.LPAREN,ch);
                 break;
             case ')':
-                tok = new Token(Token.RPAREN,ch);
+                tok = new Token(Token.TokenType.RPAREN,ch);
                 break;
             case ',':
-                tok = new Token(Token.COMMA,ch);
+                tok = new Token(Token.TokenType.COMMA,ch);
                 break;
             case '{':
-                tok = new Token(Token.LBRACE,ch);
+                tok = new Token(Token.TokenType.LBRACE,ch);
                 break;
             case '}':
-                tok = new Token(Token.RBRACE,ch);
+                tok = new Token(Token.TokenType.RBRACE,ch);
                 break;
             case 0:
-                tok = new Token(Token.EOF,"");
+                tok = new Token(Token.TokenType.EOF,"");
                 break;
             default:
                 if(Character.isAlphabetic(ch) || ch =='_'){
@@ -126,14 +126,14 @@ public class Lexer {
                 }
                 else if(Character.isDigit(ch)){
                     tok = new Token();
-                    tok.Type = Token.INT;
+                    tok.Type = Token.TokenType.INT;
                     tok.Literal = this.readNumber();
                     return tok;
                 }
                 else{
                     System.err.println("Invalid Token!");
                     tok = new Token();
-                    tok = new Token(Token.ILLEGAL,ch);
+                    tok = new Token(Token.TokenType.ILLEGAL,ch);
                 }
                 break;
         }
