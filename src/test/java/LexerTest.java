@@ -1,15 +1,11 @@
-package src.test.java;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-
-import src.main.java.com.monkeyjava.lexer.Lexer;
-import src.main.java.   com.monkeyjava.token.Token;
+import com.monkeyjava.lexer.Lexer;
+import com.monkeyjava.token.Token;
 
 public class LexerTest {
     @Test

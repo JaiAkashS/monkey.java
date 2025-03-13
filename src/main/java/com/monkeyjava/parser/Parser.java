@@ -1,15 +1,15 @@
-package src.main.java.com.monkeyjava.parser;
+package com.monkeyjava.parser;
 
-import src.main.java.com.monkeyjava.token.*;
-import src.main.java.com.monkeyjava.token.Token.TokenType;
-import src.main.java.com.monkeyjava.lexer.*;
+import com.monkeyjava.token.*;
+import com.monkeyjava.token.Token.TokenType;
+import com.monkeyjava.lexer.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 
-import src.main.java.com.monkeyjava.ast.Ast;
+import com.monkeyjava.ast.Ast;
 
 
 

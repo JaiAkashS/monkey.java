@@ -1,14 +1,10 @@
-package src.test.java;
-
 import static org.junit.Assert.fail;
-
-
 
 import org.junit.Test;
 
-import src.main.java.com.monkeyjava.ast.Ast;
-import src.main.java.com.monkeyjava.token.Token;
-import src.main.java.com.monkeyjava.token.Token.TokenType;
+import com.monkeyjava.ast.Ast;
+import com.monkeyjava.token.Token;
+import com.monkeyjava.token.Token.TokenType;
 
 public class AstTest {
     @Test

@@ -1,4 +1,4 @@
-package src.main.java.com.monkeyjava.token;
+package com.monkeyjava.token;
 
 import java.util.HashMap;
 

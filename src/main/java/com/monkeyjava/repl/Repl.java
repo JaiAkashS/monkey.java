@@ -1,10 +1,10 @@
-package src.main.java.com.monkeyjava.repl;
+package com.monkeyjava.repl;
 
 import java.util.Scanner;
 
-import src.main.java.com.monkeyjava.token.Token;
-import src.main.java.com.monkeyjava.token.Token.TokenType;
-import src.main.java.com.monkeyjava.lexer.Lexer;
+import com.monkeyjava.token.Token;
+import com.monkeyjava.token.Token.TokenType;
+import com.monkeyjava.lexer.Lexer;
 
 public class Repl {
     final static String PROMPT = ">>";

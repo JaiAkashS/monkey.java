@@ -1,6 +1,4 @@
-package src.test.java;
-
-import src.main.java.com.monkeyjava.token.Token.TokenType;
+import com.monkeyjava.token.Token.TokenType;
 
 public class ExpectToken {
     TokenType Type;

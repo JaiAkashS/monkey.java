@@ -1,14 +1,13 @@
-package src.test.java;
 
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
-import src.main.java.com.monkeyjava.ast.Ast;
-import src.main.java.com.monkeyjava.lexer.Lexer;
-import src.main.java.com.monkeyjava.parser.Parser;
-import src.main.java.com.monkeyjava.token.Token;
+import com.monkeyjava.ast.Ast;
+import com.monkeyjava.lexer.Lexer;
+import com.monkeyjava.parser.Parser;
+import com.monkeyjava.token.Token;
 
 public class ParserTest {
     @Test

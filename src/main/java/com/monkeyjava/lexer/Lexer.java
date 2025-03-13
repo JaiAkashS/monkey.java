@@ -1,6 +1,6 @@
-package src.main.java.com.monkeyjava.lexer;
+package com.monkeyjava.lexer;
 
-import src.main.java.com.monkeyjava.token.Token;
+import com.monkeyjava.token.Token;
 
 public class Lexer {
     String input;

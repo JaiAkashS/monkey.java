@@ -1,6 +1,6 @@
-package src.main.java.com.monkeyjava;
+package com.monkeyjava;
 
-import src.main.java.com.monkeyjava.repl.Repl;
+import com.monkeyjava.repl.Repl;
 
 public class Main {
     public static void main(String[] args){
