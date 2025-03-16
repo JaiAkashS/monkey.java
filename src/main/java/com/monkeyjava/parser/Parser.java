@@ -31,8 +31,9 @@ public class Parser{
     Token peekToken;
     ArrayList<String> errors;
 
-    HashMap<Token,prefixParseFn> prefixParseFns;
-    HashMap<Token,infixParseFn> infixParseFns;
+    HashMap<TokenType,prefixParseFn> prefixParseFns;
+    HashMap<TokenType,infixParseFn> infixParseFns;
+
 
 
     public Parser (Lexer l){
@@ -64,8 +65,8 @@ public class Parser{
             case RETURN:
                 return this.parseReturnStatement();
             default:
+                // return this.parseExpressionStatement();
                 return null;
-
         }
     }
     public Ast.LetStatement parseLetStatement(){
@@ -95,6 +96,19 @@ public class Parser{
         }
         return rstmt;
     }
+
+    // public Ast.ExpressionStatement parseExpressionStatement(){
+    //     Ast.ExpressionStatement stmt = new Ast().new ExpressionStatement(this.curToken);
+        
+    //     stmt.Expression = this.parseExpression(LOWEST);
+
+    //     if (this.peekTokenIs(TokenType.SEMICOLON)) {
+    //         this.nextToken();
+    //     }
+    //     return stmt;
+    // }
+
+
 
 
 
@@ -127,5 +141,12 @@ public class Parser{
     }
 
 
+    public void registerPrefix(TokenType Type,prefixParseFn fn){
+        this.prefixParseFns.put(Type, fn);
+    }
+
+    public void registerInfix(TokenType Type,infixParseFn fn){
+        this.infixParseFns.put(Type, fn);
+    }
 }
 

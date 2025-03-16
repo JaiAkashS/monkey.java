@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.monkeyjava.ast.Ast;
 import com.monkeyjava.lexer.Lexer;
 import com.monkeyjava.parser.Parser;
-import com.monkeyjava.token.Token;
+
 
 public class ParserTest {
     @Test
@@ -91,7 +91,40 @@ public class ParserTest {
             }
         }
     } 
+    @Test
+    public void TestIdentifierExpression(){
+        String input = "foobar;";
+        Lexer l = new Lexer(input);
+        Parser p = new Parser(l);
+        Ast.Program program = p.ParseProgram();
 
-
-
+        if(program.Statements.size() != 1 ){
+            System.err.println(String.format("program has not enough statements. got = %d",program.Statements.size()));
+            fail();
+        }
+        Ast.ExpressionStatement stmt;
+        if(program.Statements.get(0) instanceof Ast.ExpressionStatement){
+            stmt = (Ast.ExpressionStatement)program.Statements.get(0);
+        }else{
+            System.err.println(String.format("program.Statement[0] is not a Ast.ExpressionStatement. got = %s" + program.Statements.get(0).toString()));
+            fail();
+            return;
+        }
+        Ast.Identifier ident;
+        if(stmt.Expression instanceof Ast.ExpressionStatement){
+            ident = (Ast.Identifier)stmt.Expression;
+        }else{
+            ident = null;
+            System.err.println(String.format("exp not Ast.Identifier. got =%s",stmt.Expression));
+            fail();
+        }
+        if(!ident.Value.equals("foobar")){
+            System.err.println(String.format("ident.Value not %s. got = %s","foobar",ident.Value));
+            fail();
+        }
+        if (!ident.TokenLiteral().equals("foobar")) {
+            System.err.println(String.format("ident.TokenLiteral() not %s.got = %s","foobar",ident.TokenLiteral() ));
+            fail();
+        }
+    }
 }

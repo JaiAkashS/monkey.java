@@ -99,10 +99,10 @@ public class LexerTest {
         // }
         for (ExpectToken expectedToken : tokens) {
             Token t = l.NextToken();
-            // System.err.println("Expected: " + expectedToken.Type + " -> " + expectedToken.Literal);
-            // System.err.println("Got: " + t.Type + " -> " + t.Literal);
+            System.err.println("Expected: " + expectedToken.Type.getValue() + " -> " + expectedToken.Literal);
+            System.err.println("Got: " + t.Type.getValue() + " -> " + t.Literal);
     
-            Assertions.assertEquals(expectedToken.Type, t.Type);
+            Assertions.assertEquals(expectedToken.Type.getValue(), t.Type.getValue());
             Assertions.assertEquals(expectedToken.Literal, t.Literal);
         }
     }

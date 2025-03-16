@@ -1,4 +1,15 @@
 -------------------------------------------------------------------------------
 Test set: ParserTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in ParserTest
+Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.046 s <<< FAILURE! -- in ParserTest
+ParserTest.TestIdentifierExpression -- Time elapsed: 0.032 s <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problem: 
+	This method must return a result of type Ast.ExpressionStatement
+
+	at com.monkeyjava.parser.Parser.parseExpressionStatement(Parser.java:99)
+	at com.monkeyjava.parser.Parser.parseStatement(Parser.java:67)
+	at com.monkeyjava.parser.Parser.ParseProgram(Parser.java:52)
+	at ParserTest.TestIdentifierExpression(ParserTest.java:99)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+

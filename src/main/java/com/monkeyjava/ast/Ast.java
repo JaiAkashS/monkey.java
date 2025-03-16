@@ -2,7 +2,9 @@ package com.monkeyjava.ast;
 
 
 import java.util.ArrayList;
-import com.monkeyjava.token.*;
+import com.monkeyjava.token.Token;
+
+
 
 
 
@@ -122,11 +124,13 @@ public class Ast {
     }
 
     public class ExpressionStatement implements Statement{
-        Token Token;
-        Expression Expression;
+        public Token Token;
+        public Expression Expression;
         
         
-        
+        public ExpressionStatement(Token curToken){
+            this.Token = curToken;
+        }
         public void statementNode(){}
         public String TokenLiteral(){
             return Token.Literal;

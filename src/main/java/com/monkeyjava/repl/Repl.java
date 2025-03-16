@@ -19,7 +19,7 @@ public class Repl {
             }
             Lexer l = new Lexer(scanned);
             for(Token tok = l.NextToken();tok.Type!=TokenType.EOF;tok = l.NextToken()){
-                System.out.println(String.format("%s : %s",tok.Literal,tok.Type));
+                System.out.println(String.format("TokenType:%s Literal:%s ",tok.Type.getValue(),tok.Literal));
             }
             break;
         }

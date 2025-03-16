@@ -2,11 +2,45 @@ package com.monkeyjava.token;
 
 import java.util.HashMap;
 
-
-
 public class Token {
     public enum TokenType {
-        ILLEGAL, IDENT, INT, ASSIGN, PLUS, MINUS, BANG, ASTERISK, SLASH, EQ, NOT_EQ, LT, GT, COMMA, SEMICOLON, LPAREN, RPAREN, LBRACE, RBRACE, FUNCTION, EOF, LET, RETURN, IF, ELSE, TRUE, FALSE
+        ILLEGAL("ILLEGAL"),
+        IDENT("IDENT"),
+        INT("INT"),
+        ASSIGN("="),
+        PLUS("+"),
+        MINUS("-"),
+        BANG("!"),
+        ASTERISK("*"),
+        SLASH("/"),
+        EQ("=="),
+        NOT_EQ("!="),
+        LT("<"),
+        GT(">"),
+        COMMA(","),
+        SEMICOLON(";"),
+        LPAREN("("),
+        RPAREN(")"),
+        LBRACE("{"),
+        RBRACE("}"),
+        FUNCTION("fn"),
+        EOF("EOF"),
+        LET("let"),
+        RETURN("return"),
+        IF("if"),
+        ELSE("else"),
+        TRUE("true"),
+        FALSE("false");
+
+        private final String value;
+
+        TokenType(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 
     public TokenType Type;
