@@ -87,6 +87,7 @@ public class Parser{
 
     public Ast.ReturnStatement parseReturnStatement(){
         Ast.ReturnStatement rstmt = new Ast().new ReturnStatement();
+        rstmt.Token = this.curToken; // Initialize the Token field
 
         this.nextToken();
         //TODO: we're skipping the expressions until we encounter a semicolon

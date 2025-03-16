@@ -79,14 +79,13 @@ public class ParserTest {
             System.err.println(String.format("praogram.Statment does not contain 3 statements. got %d",program.Statements.size()));
         }
         for (Ast.Statement stmt : program.Statements) {
-            Ast.ReturnStatement rstmt;
+            Ast.ReturnStatement rstmt = null;
             if(stmt instanceof Ast.ReturnStatement){
                 rstmt = (Ast.ReturnStatement)stmt;
-                continue;
             }else{
-                rstmt = null;
+                System.err.println(String.format("stmt not ast.returnStatmenet. got = %s", stmt));
             }
-            if(rstmt == null || !rstmt.TokenLiteral().equals("return")){
+            if(!rstmt.TokenLiteral().equals("return")){
                 System.err.println(String.format("returnStmt.TokenLiteral not 'return' or null,got %s",rstmt.TokenLiteral()));
             }
         }

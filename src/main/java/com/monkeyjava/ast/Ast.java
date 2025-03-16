@@ -103,8 +103,8 @@ public class Ast {
     }
 
     public class ReturnStatement implements Statement{
-        Token Token;
-        Expression ReturnValue;
+        public Token Token;
+        public Expression ReturnValue;
 
 
         public void statementNode(){}
